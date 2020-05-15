@@ -1,0 +1,19 @@
+{
+  "name": "lux-lighting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nuxt": "^2.12.2",
+    "vue-yandex-maps": "^0.10.7"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2"
+  }
+}

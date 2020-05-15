@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'Myriad Pro Light';
+  src: url('~assets/fonts/MyriadPro-Light.eot');
+  src: url('~assets/fonts/MyriadPro-Light.eot?#iefix') format('embedded-opentype'),
+  url('~assets/fonts//MyriadPro-Light.woff') format('woff'),
+  url('~assets/fonts//MyriadPro-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  }
+
+@font-face {
+  font-family: 'Myriad Pro Regular';
+  src: url('~assets/fonts//MyriadPro-Regular.eot');
+  src: url('~assets/fonts//MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+  url('~assets/fonts//MyriadPro-Regular.woff') format('woff'),
+  url('~assets/fonts//MyriadPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Myriad Pro Semibold';
+  src: url('~assets/fonts/MyriadPro-Semibold.eot');
+  src: url('~assets/fonts/MyriadPro-Semibold.eot?#iefix') format('embedded-opentype'),
+  url('~assets/fonts/MyriadPro-Semibold.woff') format('woff'),
+  url('~assets/fonts/MyriadPro-Semibold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  }
+
+@font-face {
+  font-family: 'Myriad Pro Bold';
+  src: url('~assets/fonts//MyriadPro-Bold.eot');
+  src: url('~assets/fonts//MyriadPro-Bold.eot?#iefix') format('embedded-opentype'),
+  url('~assets/fonts//MyriadPro-Bold.woff') format('woff'),
+  url('~assets/fonts//MyriadPro-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  color: #ffffff;
+}
+
+.nav-active-link {
+  color: #f7c601;
+  border-bottom: 4px #f7c601 solid;
+}
+
+.container {
+  margin: auto;
+  background: rgb(22,23,35);
+  font-family: 'Myriad Pro Regular';
+}
+section {
+  margin: auto;
+  max-width: 1055px;
+  background: linear-gradient(
+    90deg, 
+    rgba(22,23,35,1) 5%, 
+    rgba(104,67,49,1) 50%, 
+    rgba(22,23,35,1) 95%
+  );
+}
+
+.page-title {
+  margin: 50px;
+  text-align: center;
+  font-size: 30px;
+  color: #f7c601;
+  font-family: 'MyRiad Pro Bold';
+}
+
+.bordered {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 4px #f7c601 solid;
+}
+
+.block {
+  display: block;
+}
