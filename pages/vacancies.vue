@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import VacancyCard from '@/components/Vacancycard.vue'
+import VacancyCard from '@/components/VacancyCard.vue'
 export default {
   components: {
     VacancyCard
