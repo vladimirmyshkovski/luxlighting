@@ -7,7 +7,6 @@
       <nav class="nav">
         <ul class="navbar">
           <li><nuxt-link to="/">Главная</nuxt-link></li>
-          <li><nuxt-link to="/about">О компании</nuxt-link></li>
           <li
             @mouseover="isHover=true"
             @mouseleave="isHover=false"
