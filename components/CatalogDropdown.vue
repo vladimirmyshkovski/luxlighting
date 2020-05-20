@@ -6,7 +6,7 @@
           type="checkbox"
           id="check-1"
           value="Лампы промышленные"
-          @click="check"
+          @click="checkCategory"
         >
         <label class="tab__label" for="check-1">Лампы промышленные</label>
         <div class="tab__content">
@@ -19,7 +19,7 @@
           type="checkbox"
           id="check-2"
           value="Светильники светодиодные"
-          @click="check"
+          @click="checkCategory"
         >
         <label class="tab__label" for="check-2">Светильники светодиодные</label>
         <div class="tab__content">
@@ -32,7 +32,7 @@
           type="checkbox"
           id="check-3"
           value="Блоки аварийного питания БАП"
-          @click="check"
+          @click="checkCategory"
         >
         <label class="tab__label" for="check-3">Блоки аварийного питания БАП</label>
         <div class="tab__content">
@@ -47,7 +47,7 @@
 <script>
 export default {
   methods: {
-    check(e) {
+    checkCategory(e) {
       if(process.browser) {
         localStorage.setItem('category', e.target.value)
       }

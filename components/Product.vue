@@ -1,8 +1,8 @@
 <template>
-  <div class="catalog-item">
-    <div class="catalog-item__title"><p>{{ title }}</p></div>
-    <div class="catalog-item__image"><img :src="image" alt="title"></div>
-    <ul class="catalog-item__features">
+  <div class="product">
+    <div class="product__image"><img :src="image" alt="title"></div>
+    <div class="product__title"><p>{{ title }}</p></div>
+    <ul class="product__features">
       <li class="feature">
         <span class="feature__prop">Потребляемая мощность, Вт</span>
         <span class="feature__value">{{ features.power }}</span>
@@ -58,31 +58,33 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  .catalog-item {
-    width: 30%;
-    padding: 0 50px;
-    margin-bottom: 60px;
+<style lang="scss" scoped>
+  .product {
+    min-height: 400px;
+    margin: 60px;
     cursor: pointer;
 
     &__title {
-      text-align: center;
       text-transform: uppercase;
       font-family: 'MyRiad Pro Bold';
       font-size: 16px;
     }
     &__image {
-      width: 150px;
-      height: 150px;
-      margin: 15px auto;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      float: left;
+      margin-right: 40px;
       background-color: #fff;
       border: 3px solid #f7c601;
     }
     &__features {
       list-style-type: none;
-      margin: 0;
+      margin-top: 40px;
       padding: 0;
-      font-size: 12px;
+      font-size: 16px;
 
       .feature,
       .price {
@@ -94,9 +96,8 @@ export default {
         margin-top: 10px;
          
         &__value {
-          padding-top: 2px;
-          padding-bottom: 2px;
-          padding-left: 4px;
+          margin-left: -5px;
+          padding: 5px;
           border: 1px solid #f7c601;
         }
       }
@@ -105,10 +106,6 @@ export default {
       .price__prop {
         width: 75%;
       }
-      .feature__value,
-      .price__value {
-        width: 25%;
-      }
     }
   }
-</style>>
+</style>

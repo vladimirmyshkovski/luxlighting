@@ -11,6 +11,7 @@
             :image="require(`@/assets/img/${product.image}`)"
             :features="product.features"
             :price="product.price"
+            @click.native="$router.push({path: `/products/${product.id}`})"
           />
         </div>
       </div>
@@ -44,7 +45,7 @@ export default {
           price: '2.63'
         },
         {
-          id: 1,
+          id: 2,
           title: 'Лампа газоразрядная ДНАТ 70ВТ',
           image: 'lamp.png',
           features: {
@@ -61,7 +62,7 @@ export default {
           price: '2.63'
         },
         {
-          id: 1,
+          id: 3,
           title: 'Лампа газоразрядная ДНАТ 70ВТ',
           image: 'lamp.png',
           features: {
