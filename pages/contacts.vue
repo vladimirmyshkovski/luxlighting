@@ -144,9 +144,23 @@ export default {
     display: flex;
     font-family: 'MyRiad Pro Bold';
 
+    @media screen and (max-width: 876px) {
+      margin: 0 20px;
+      padding: 20px;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media screen and (max-width: 520px) {
+      font-size: 14px;
+    }
+
     &__addresses {
       width: 40%;
-      //margin: 20px 0;
+      
+      @media screen and (max-width: 876px) {
+        width: 80%;
+        margin-bottom: 100px;
+      }
 
       .address {
         margin-bottom: 45px;
@@ -166,16 +180,28 @@ export default {
         margin-bottom: 40px;
         display: flex;
         justify-content: space-between;
+
+        @media screen and (max-width: 876px) {
+          justify-content: space-around;
+        }
         
         &__req,
         &__route {
           display: flex;
           align-items: flex-end;
           cursor: pointer;
+
+          @media screen and (max-width: 876px) {
+            margin: 0 10px;
+          } 
           
           p {
             margin-left: 10px;
             color: #f7c601;
+
+            @media screen and (max-width: 520px) {
+              font-size: 12px;
+            } 
           }
         }
       }
@@ -183,19 +209,38 @@ export default {
     &__info {
       width: 50%;
 
+      @media screen and (max-width: 876px) {
+        width: 100%;
+      }
+
       .info__business {
         display: flex;
         justify-content: space-between;
 
+        @media screen and (max-width: 876px) {
+          justify-content: space-around;
+        }
+
         .business__connection,
         .business__workhours {
-          //width: 50%;
           position: relative;
+
+          @media screen and (max-width: 876px) {
+            margin: 0 10px;
+          } 
+          @media screen and (max-width: 520px) {
+            font-size: 12px;
+          } 
 
           .business__icon {
             position: absolute;
             top: 0;
             left: -60px;
+
+            @media screen and (max-width: 876px) {
+              top: -60px;
+              left: 0;
+            } 
           }
           .connection__title {
             color: #f7c601;
@@ -206,14 +251,28 @@ export default {
           }
         }
         .business__workhours {
-            margin-right: 60px;
+          margin-right: 60px;
+
+          @media screen and (max-width: 876px) {
+            margin-right: 0;
           }
+        }
       }
       .info__map {
-          width: 420px;
+          max-width: 420px;
           height: 300px;
           margin-top: 30px;
           border: 4px #f7c601 solid;
+
+           @media screen and (max-width: 876px) {
+            max-width: 100%;
+            height: 400px;
+            margin: auto;
+            margin-top: 30px;
+          }
+          @media screen and (max-width: 520px) {
+            font-size: 12px;
+          } 
         }
     }
   }
@@ -224,12 +283,20 @@ export default {
     font-size: 16px;
     font-family: 'MyRiad Pro Bold';
 
+    @media screen and (max-width: 876px) {
+      margin: 40px 20px;
+      padding: 40px 20px;
+    } 
+    @media screen and (max-width: 520px) {
+      font-size: 14px;
+    } 
+
     &__title {
       color: #fd0505;
-    }
-
-    &__text {
-      //max-width: 848px;
+      
+      @media screen and (max-width: 520px) {
+        font-size: 16px;
+      } 
     }
   }
 </style>

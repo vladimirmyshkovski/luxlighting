@@ -47,7 +47,7 @@
       </div>
     </main>
     <section>
-      <div class="what-we-do">
+      <div class="we-are-cool">
         <p>
           мы ведем
           прямые
@@ -83,9 +83,20 @@ export default {
     display: flex;
     text-transform: uppercase;
 
+    @media screen and (max-width: 1048px) {
+      flex-direction: column;
+      align-items: center;
+    }
+
     .company {
       width: 50%;
       padding: 0 20px;
+
+       @media screen and (max-width: 1048px) {
+        width: 100%;;
+        padding: 0 30px;
+        margin-bottom: 40px;
+      }
 
       &__about {
         font-family: 'MyRiad Pro Bold';
@@ -107,12 +118,26 @@ export default {
       .certificates {
         display: flex;
         justify-content: space-between;
+
+        @media screen and (max-width: 1048px) {
+          justify-content: space-around;
+        }
+        @media screen and (max-width: 520px) {
+          flex-direction: column;
+          align-items: center;
+        }
       }
     }
     .info {
       width: 50%;
       padding: 0 20px;
       font-family: 'MyRiad Pro Bold';
+
+      @media screen and (max-width: 1048px) {
+        width: 100%;
+        padding: 0 30px;
+        align-items: center;
+      }
 
       .to-dealers {
         margin-top: 48px;
@@ -142,7 +167,13 @@ export default {
     align-items: center;
     position: relative;
 
-    .what-we-do {
+    @media screen and (max-width: 1048px) {
+      height: 800px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .we-are-cool {
       width: 260px;
       padding: 20px 45px;
       font-size: 24px;
@@ -154,11 +185,29 @@ export default {
       width: 600px;
       margin-left: 90px;
       margin-right: -90px;
+
+      @media screen and (max-width: 1048px) {
+        margin: auto;
+        margin-top: 60px;
+      }
+      @media screen and (max-width: 520px) {
+        width: 300px;
+      }
     }
     .cargo {
       position: absolute;
       bottom: 55px;
       right: 120px;
+
+      @media screen and (max-width: 1048px) {
+        right: calc(50% - 120px);
+      }
+
+      img {
+        @media screen and (max-width: 1048px) {
+          width: 120px;
+        }
+      }
     }
   }
 </style>

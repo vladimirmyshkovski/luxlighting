@@ -73,6 +73,14 @@ section {
   font-size: 30px;
   color: #f7c601;
   font-family: 'MyRiad Pro Bold';
+
+  @media screen and (max-width: 876px) {
+    font-size: 24px;
+    margin: 20px ;
+  } 
+  @media screen and (max-width: 520px) {
+    font-size: 18px;
+  } 
 }
 
 .bordered {

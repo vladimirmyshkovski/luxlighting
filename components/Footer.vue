@@ -41,6 +41,18 @@ export default {
     border-top: 4px solid #f7c601;
     font-size: 12px;
 
+    @media screen and (max-width: 1048px) {
+      justify-content: space-around;
+    }
+    @media screen and (max-width: 876px) {
+      height: 250px;
+      padding: 20px 0;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+    }
+
     .requisites,
     .social {
       display: flex;
@@ -51,11 +63,20 @@ export default {
 
       .copy {
         font-size: 18px;
+
+        @media screen and (max-width: 876px) {
+          margin-top: 20px;
+        }
       }
     }
     .disclaimer {
-      width: 340px;
+      max-width: 340px;
       text-align: center;
+
+      @media screen and (max-width: 520px) {
+        margin: 10px;
+        margin-bottom: 20px;
+      }
     }
   }
 </style>

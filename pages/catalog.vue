@@ -32,6 +32,10 @@ export default {
       font-family: 'Myriad Pro Semibold';
       text-transform: uppercase;
       font-size: 24px;
+
+      @media screen and (max-width: 876px) {
+        padding-left: 20px;
+      }
     }
   }
 </style>

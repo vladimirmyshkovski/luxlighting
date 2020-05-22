@@ -38,10 +38,33 @@
           <p>info@etline.by</p>
         </div>
       </div>
+      <div class="burger-menu" @click="burger=true">
+        <img src="../assets/img/open-menu.png" width="30">
+      </div>
     </header>
     <div class="slogan">
       <p>Прямые поставки электротехнической продукции</p>
+      <div class="search">
+        <input type="text" placeholder="Введите наименование (маркировку)">
+        <img src="../assets/img/search.png">
+      </div>
     </div>
+    <ul class="side-navbar">
+      <li><nuxt-link to="/">Главная</nuxt-link></li>
+      <li
+        @mouseover="isHover=true"
+        @mouseleave="isHover=false"
+        class="side-navbar__catalog"
+      >
+        <nuxt-link to="/catalog">Каталог</nuxt-link>
+        <div v-if="isHover" class="catalog-dropdown">
+          <CatalogDropdown />
+        </div>
+      </li>
+      <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
+      <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
+    </ul>
+    <img @click="burger=false" class="close" src="../assets/img/close.png" width="20">
   </div>
 </template>
 
@@ -51,6 +74,7 @@ export default {
   components: { CatalogDropdown },
   data() {
     return {
+      burger: false,
       isHover: false
     }
   }
@@ -72,6 +96,20 @@ export default {
   
     & .logo {
       margin: 40px 0 0 30px;
+      
+      @media screen and (max-width: 520px) {
+        margin-left: 10px;
+      }
+
+      img {
+        @media screen and (max-width: 876px) {
+          width: 100px;
+          margin-left: 10px;
+        }
+        @media screen and (max-width: 520px) {
+          width: 90px;
+        }
+      }
     }
   }
 }
@@ -79,6 +117,10 @@ export default {
   height: 50px;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 876px) {
+    display: none;
+  }
 }
 .navbar {
   list-style-type: none;
@@ -126,13 +168,98 @@ export default {
 .header-contacts {
   margin-left: auto;
   margin-right: 20px;
+
+  @media screen and (max-width: 876px) {
+    margin-left: 40px;
+  }
+  @media screen and (max-width: 520px) {
+    margin-left: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 10px;
+  }
 }
 .header-contacts__phone {
   font-size: 12px;
+
+  @media screen and (max-width: 520px) {
+    font-size: 10px;
+  }
 }
 .header-contacts__email {
   margin-left: 15px;
   font-size: 12px;
+
+  @media screen and (max-width: 520px) {
+    margin: 3px 0 0;
+  }
+}
+.burger-menu {
+  display: none;
+  
+  @media screen and (max-width: 876px) {
+    display: block;
+    margin-left: auto;
+    margin-right: 30px;
+  }
+  @media screen and (max-width: 520px) {
+    margin-right: 20px;
+  }
+
+  img {
+    @media screen and (max-width: 520px) {
+      width: 20px;
+    }
+  }
+}
+.slogan {
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 876px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .search {
+    margin-left: auto;
+    margin-right: 15px;
+    margin-top: 25px;
+    position: relative;
+
+    @media screen and (max-width: 876px) {
+      margin-left: 40px;
+    }
+    @media screen and (max-width: 520px) {
+      margin-left: 20px;
+    }
+
+    input {
+      width: 265px;
+      padding: 5px 10px;
+      background-color: transparent;
+      border: 2px solid #f7c601;
+      border-radius: 9px;
+
+      &::placeholder {
+        color: #fff;
+        font-size: 12px;
+      }
+      &:focus {
+        outline: none;
+      }
+      &:focus::placeholder {
+        color: #999;
+      }
+    }
+    
+    img {
+      position: absolute;
+      top: 7px;
+      right: 15px;
+      cursor: pointer;
+    }
+  }
 }
 .slogan p {
   width: 620px;
@@ -144,5 +271,48 @@ export default {
   font-size: 16px;
   letter-spacing: 5px;
   text-transform: uppercase;
+
+  @media screen and (max-width: 876px) {
+    width: 50%;
+    line-height: 30px;
+  }
+  @media screen and (max-width: 876px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 520px) {
+    margin-left: 20px;
+  }
+
+  
+}
+.side-navbar {
+  display: none; // ! DISPLAY: BLOCK
+  width: 70%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #523526;
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 16px;
+
+  li {
+    margin-top: 20px;
+    color: #fff;
+
+    a {
+      display: block;
+      padding: 11px 5px;
+      text-decoration: none; 
+    }
+  }
+}
+.close {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
 }
 </style>

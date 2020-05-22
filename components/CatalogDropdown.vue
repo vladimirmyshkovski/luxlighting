@@ -48,6 +48,7 @@
 export default {
   methods: {
     checkCategory(e) {
+      console.log(e.target)
       if(process.browser) {
         localStorage.setItem('category', e.target.value)
       }

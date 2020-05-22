@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss">
   .catalog-item {
-    width: 30%;
+    width: 320px;
     padding: 0 50px;
     margin-bottom: 60px;
     cursor: pointer;

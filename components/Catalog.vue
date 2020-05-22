@@ -84,10 +84,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .subcategory__title {
     margin-top: 20px;
     text-transform: uppercase;
+
+    @media screen and (max-width: 876px) {
+      padding-left: 20px;
+    }
   }
   .catalog-wrapper {
     margin-top: 40px;
