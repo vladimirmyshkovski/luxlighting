@@ -284,9 +284,7 @@ export default {
   @media screen and (max-width: 520px) {
     width: 265px;
     margin-left: 20px;
-  }
-
-  
+  } 
 }
 .side-navbar {
   width: 70%;
