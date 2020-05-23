@@ -182,7 +182,7 @@ export default {
       border: 4px solid #f7c601;
     }
     .map img {
-      width: 600px;
+      width: 520px;
       margin-left: 90px;
       margin-right: -90px;
 
