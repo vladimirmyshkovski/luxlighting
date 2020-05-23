@@ -38,7 +38,7 @@
           <p>info@etline.by</p>
         </div>
       </div>
-      <div class="burger-menu" @click="burger=true">
+      <div class="burger-menu" @click="sidebar=true">
         <img src="../assets/img/open-menu.png" width="30">
       </div>
     </header>
@@ -49,22 +49,24 @@
         <img src="../assets/img/search.png">
       </div>
     </div>
-    <ul class="side-navbar">
-      <li><nuxt-link to="/">Главная</nuxt-link></li>
-      <li
-        @mouseover="isHover=true"
-        @mouseleave="isHover=false"
-        class="side-navbar__catalog"
-      >
-        <nuxt-link to="/catalog">Каталог</nuxt-link>
-        <div v-if="isHover" class="catalog-dropdown">
-          <CatalogDropdown />
-        </div>
-      </li>
-      <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
-      <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
-    </ul>
-    <img @click="burger=false" class="close" src="../assets/img/close.png" width="20">
+    <transition name="slide">
+      <ul class="side-navbar" v-if="sidebar" @click="sidebar=false">
+        <li><nuxt-link to="/">Главная</nuxt-link></li>
+        <li
+          @mouseover="isHover=true"
+          @mouseleave="isHover=false"
+          class="side-navbar__catalog"
+        >
+          <nuxt-link to="/catalog">Каталог</nuxt-link>
+          <div v-if="isHover" class="catalog-dropdown">
+            <CatalogDropdown />
+          </div>
+        </li>
+        <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
+        <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
+      </ul>
+    </transition>
+    <img v-if="sidebar" @click="sidebar=false" class="close" src="../assets/img/close.png" width="20">
   </div>
 </template>
 
@@ -74,7 +76,7 @@ export default {
   components: { CatalogDropdown },
   data() {
     return {
-      burger: false,
+      sidebar: false,
       isHover: false
     }
   }
@@ -273,20 +275,20 @@ export default {
   text-transform: uppercase;
 
   @media screen and (max-width: 876px) {
-    width: 50%;
+    width: 70%;
     line-height: 30px;
   }
   @media screen and (max-width: 876px) {
     font-size: 12px;
   }
   @media screen and (max-width: 520px) {
+    width: 265px;
     margin-left: 20px;
   }
 
   
 }
 .side-navbar {
-  display: none; // ! DISPLAY: BLOCK
   width: 70%;
   height: 100%;
   position: absolute;
@@ -308,8 +310,16 @@ export default {
     }
   }
 }
+.slide-enter-active,
+.slide-leave-active {
+  transition: all .3s ease;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(100%);
+}
 .close {
-  display: none;
+  //display: none;
   position: absolute;
   top: 20px;
   right: 20px;
