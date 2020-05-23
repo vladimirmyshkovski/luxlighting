@@ -42,8 +42,8 @@
         <img src="../assets/img/open-menu.png" width="30">
       </div>
     </header>
-    <div class="slogan">
-      <p>Прямые поставки электротехнической продукции</p>
+    <div class="header-hero">
+      <p class="slogan">Прямые поставки электротехнической продукции</p>
       <div class="search">
         <input type="text" placeholder="Введите наименование (маркировку)">
         <img src="../assets/img/search.png">
@@ -214,7 +214,7 @@ export default {
     }
   }
 }
-.slogan {
+.header-hero {
   display: flex;
   align-items: center;
 
@@ -263,7 +263,7 @@ export default {
     }
   }
 }
-.slogan p {
+.slogan {
   width: 620px;
   margin-top: 25px;
   margin-left: 40px;
