@@ -13,6 +13,16 @@ export default {
     },
     plugins: [
       { src: '~/plugins/ymapPlugin.js', mode: 'client' }
+    ],
+   /*
+   ** Nuxt.js modules
+   */    
+    modules: [
+      '@nuxtjs/axios',
+      '@nuxtjs/pwa',
+      '@nuxtjs/dotenv',
+
+      '@nuxtjs/component-cache'
     ]
   }
   
