@@ -4,7 +4,7 @@
       <p>{{ product.title }}</p>
     </div>
     <div class="catalog-item__image">
-      <img :src="product.image" :alt="product.title" />
+      <img :src="baseImageUrl + product.image.url" :alt="product.title" />
     </div>
     <ul class="catalog-item__product">
       <li class="feature">
@@ -54,9 +54,14 @@
 <script>
 export default {
   props: {
-    item: {
+    product: {
       type: Object,
       default: () => {}
+    }
+  },
+  computed: {
+    baseImageUrl() {
+      return process.env.BASE_URL
     }
   }
 }

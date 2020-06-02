@@ -7,11 +7,8 @@
           <CatalogItem
             v-for="product in products"
             :key="product.id"
-            :title="product.title"
-            :image="require(`@/assets/img/${product.image}`)"
-            :features="product.features"
-            :price="product.price"
-            @click.native="$router.push({ path: `/products/${product.id}` })"
+            :product="product"
+            @click.native="$router.push({ path: `/catalog/${product.id}` })"
           />
         </div>
       </div>
@@ -23,62 +20,15 @@
 import CatalogItem from '@/components/CatalogItem.vue'
 export default {
   components: { CatalogItem },
+  props: {
+    products: {
+      type: Array,
+      default: () => []
+    }
+  },
   data() {
     return {
-      subcats: ['Лампы газоразрядные ДНАТ', 'Лампы газоразрядные ДРИ'],
-      products: [
-        {
-          id: 1,
-          title: 'Лампа газоразрядная ДНАТ 70ВТ',
-          image: 'lamp.png',
-          features: {
-            power: '9 Вт',
-            voltage: '185-265',
-            frequency: '50',
-            cap: 'G13',
-            colorTemperature: '4000/6500',
-            sizes: '600x26',
-            colorRenderIndex: '>80',
-            lightFlow: '800',
-            quantity: '30'
-          },
-          price: '2.63'
-        },
-        {
-          id: 2,
-          title: 'Лампа газоразрядная ДНАТ 70ВТ',
-          image: 'lamp.png',
-          features: {
-            power: '9 Вт',
-            voltage: '185-265',
-            frequency: '50',
-            cap: 'G13',
-            colorTemperature: '4000/6500',
-            sizes: '600x26',
-            colorRenderIndex: '>80',
-            lightFlow: '800',
-            quantity: '30'
-          },
-          price: '2.63'
-        },
-        {
-          id: 3,
-          title: 'Лампа газоразрядная ДНАТ 70ВТ',
-          image: 'lamp.png',
-          features: {
-            power: '9 Вт',
-            voltage: '185-265',
-            frequency: '50',
-            cap: 'G13',
-            colorTemperature: '4000/6500',
-            sizes: '600x26',
-            colorRenderIndex: '>80',
-            lightFlow: '800',
-            quantity: '30'
-          },
-          price: '2.63'
-        }
-      ]
+      subcats: ['Лампы газоразрядные ДНАТ', 'Лампы газоразрядные ДРИ']
     }
   }
 }
