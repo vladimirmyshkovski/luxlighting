@@ -30,10 +30,22 @@
 <script>
 export default {
   props: {
-    position: String,
-    subposition: String,
-    skills: Array,
-    img: String
+    position: {
+      type: String,
+      default: ''
+    },
+    subposition: {
+      type: String,
+      default: ''
+    },
+    skills: {
+      type: Array,
+      default: () => []
+    },
+    img: {
+      type: String,
+      default: ''
+    }
   }
 }
 </script>

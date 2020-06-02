@@ -52,10 +52,22 @@
 <script>
 export default {
   props: {
-    title: String,
-    image: String,
-    features: [Array, Object],
-    price: [String, Number]
+    title: {
+      type: String,
+      default: ''
+    },
+    image: {
+      type: String,
+      default: ''
+    },
+    features: {
+      type: [Array, Object],
+      default: () => {}
+    },
+    price: {
+      type: [String, Number],
+      default: 0
+    }
   }
 }
 </script>
