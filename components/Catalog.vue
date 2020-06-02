@@ -4,14 +4,14 @@
       <div class="subcategory">
         <p class="subcategory__title">Лампы газоразрядные ДНАТ</p>
         <div class="catalog-wrapper">
-          <CatalogItem 
+          <CatalogItem
             v-for="product in products"
             :key="product.id"
             :title="product.title"
             :image="require(`@/assets/img/${product.image}`)"
             :features="product.features"
             :price="product.price"
-            @click.native="$router.push({path: `/products/${product.id}`})"
+            @click.native="$router.push({ path: `/products/${product.id}` })"
           />
         </div>
       </div>
@@ -85,18 +85,18 @@ export default {
 </script>
 
 <style lang="scss">
-  .subcategory__title {
-    margin-top: 20px;
-    text-transform: uppercase;
+.subcategory__title {
+  margin-top: 20px;
+  text-transform: uppercase;
 
-    @media screen and (max-width: 876px) {
-      padding-left: 20px;
-    }
+  @media screen and (max-width: 876px) {
+    padding-left: 20px;
   }
-  .catalog-wrapper {
-    margin-top: 40px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+}
+.catalog-wrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 </style>

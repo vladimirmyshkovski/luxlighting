@@ -4,7 +4,7 @@
       Работа у нас - отличный способ реализовать свои возможности!
     </p>
     <div class="vacancy-card-container">
-      <VacancyCard 
+      <VacancyCard
         position="Менеджера"
         subposition="по оптовым продажам электротехнической продукции"
         :skills="skills"
@@ -34,9 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .vacancy-card-container {
-    margin-bottom: 75px;
-  }
-</style>>
-
+.vacancy-card-container {
+  margin-bottom: 75px;
+}
 </style>
