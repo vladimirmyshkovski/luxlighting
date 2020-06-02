@@ -41,6 +41,12 @@ export default {
         }
       ]
     }
+  },
+  async mounted() {
+    await this.$nextTick(async () => {
+      const response = await this.$axios.get('news')
+      this.articles = response.data
+    })
   }
 }
 </script>
