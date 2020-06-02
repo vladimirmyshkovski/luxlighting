@@ -1,7 +1,9 @@
 <template>
   <div class="catalog-item">
-    <div class="catalog-item__title"><p>{{ title }}</p></div>
-    <div class="catalog-item__image"><img :src="image" alt="title"></div>
+    <div class="catalog-item__title">
+      <p>{{ title }}</p>
+    </div>
+    <div class="catalog-item__image"><img :src="image" alt="title" /></div>
     <ul class="catalog-item__features">
       <li class="feature">
         <span class="feature__prop">Потребляемая мощность, Вт</span>
@@ -59,56 +61,56 @@ export default {
 </script>
 
 <style lang="scss">
-  .catalog-item {
-    width: 320px;
-    padding: 0 50px;
-    margin-bottom: 60px;
-    cursor: pointer;
+.catalog-item {
+  width: 320px;
+  padding: 0 50px;
+  margin-bottom: 60px;
+  cursor: pointer;
 
-    &__title {
-      text-align: center;
-      text-transform: uppercase;
-      font-family: 'MyRiad Pro Bold';
-      font-size: 16px;
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'MyRiad Pro Bold';
+    font-size: 16px;
+  }
+  &__image {
+    width: 150px;
+    height: 150px;
+    margin: 15px auto;
+    background-color: #fff;
+    border: 3px solid #f7c601;
+  }
+  &__features {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+
+    .feature,
+    .price {
+      display: flex;
+      align-items: center;
     }
-    &__image {
-      width: 150px;
-      height: 150px;
-      margin: 15px auto;
-      background-color: #fff;
-      border: 3px solid #f7c601;
+
+    .price {
+      margin-top: 10px;
+
+      &__value {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 4px;
+        border: 1px solid #f7c601;
+      }
     }
-    &__features {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
 
-      .feature,
-      .price {
-        display: flex;
-        align-items: center;
-      }
-
-      .price {
-        margin-top: 10px;
-         
-        &__value {
-          padding-top: 2px;
-          padding-bottom: 2px;
-          padding-left: 4px;
-          border: 1px solid #f7c601;
-        }
-      }
-
-      .feature__prop,
-      .price__prop {
-        width: 75%;
-      }
-      .feature__value,
-      .price__value {
-        width: 25%;
-      }
+    .feature__prop,
+    .price__prop {
+      width: 75%;
+    }
+    .feature__value,
+    .price__value {
+      width: 25%;
     }
   }
-</style>>
+}</style
+>>

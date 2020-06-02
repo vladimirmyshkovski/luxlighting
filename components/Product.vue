@@ -1,7 +1,9 @@
 <template>
   <div class="product">
-    <div class="product__image"><img :src="image" alt="title"></div>
-    <div class="product__title"><p>{{ title }}</p></div>
+    <div class="product__image"><img :src="image" alt="title" /></div>
+    <div class="product__title">
+      <p>{{ title }}</p>
+    </div>
     <ul class="product__features">
       <li class="feature">
         <span class="feature__prop">Потребляемая мощность, Вт</span>
@@ -59,53 +61,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .product {
-    min-height: 400px;
-    margin: 60px;
-    cursor: pointer;
+.product {
+  min-height: 400px;
+  margin: 60px;
+  cursor: pointer;
 
-    &__title {
-      text-transform: uppercase;
-      font-family: 'MyRiad Pro Bold';
-      font-size: 16px;
-    }
-    &__image {
-      width: 300px;
-      height: 300px;
+  &__title {
+    text-transform: uppercase;
+    font-family: 'MyRiad Pro Bold';
+    font-size: 16px;
+  }
+  &__image {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin-right: 40px;
+    background-color: #fff;
+    border: 3px solid #f7c601;
+  }
+  &__features {
+    list-style-type: none;
+    margin-top: 40px;
+    padding: 0;
+    font-size: 16px;
+
+    .feature,
+    .price {
       display: flex;
-      justify-content: center;
       align-items: center;
-      float: left;
-      margin-right: 40px;
-      background-color: #fff;
-      border: 3px solid #f7c601;
     }
-    &__features {
-      list-style-type: none;
-      margin-top: 40px;
-      padding: 0;
-      font-size: 16px;
 
-      .feature,
-      .price {
-        display: flex;
-        align-items: center;
-      }
+    .price {
+      margin-top: 10px;
 
-      .price {
-        margin-top: 10px;
-         
-        &__value {
-          margin-left: -5px;
-          padding: 5px;
-          border: 1px solid #f7c601;
-        }
+      &__value {
+        margin-left: -5px;
+        padding: 5px;
+        border: 1px solid #f7c601;
       }
+    }
 
-      .feature__prop,
-      .price__prop {
-        width: 75%;
-      }
+    .feature__prop,
+    .price__prop {
+      width: 75%;
     }
   }
+}
 </style>
