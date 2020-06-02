@@ -2,15 +2,15 @@
   <div class="header">
     <header>
       <div class="logo">
-        <img src="../assets/img/logo.png" alt="LUX LIGHTING" width="200">
+        <img src="../assets/img/logo.png" alt="LUX LIGHTING" width="200" />
       </div>
       <nav class="nav">
         <ul class="navbar">
           <li><nuxt-link to="/">Главная</nuxt-link></li>
           <li
-            @mouseover="isHover=true"
-            @mouseleave="isHover=false"
             class="navbar__catalog"
+            @mouseover="isHover = true"
+            @mouseleave="isHover = false"
           >
             <nuxt-link to="/catalog">Каталог</nuxt-link>
             <div v-if="isHover" class="catalog-dropdown">
@@ -24,7 +24,7 @@
       <div class="header-contacts">
         <div class="header-contacts__phone">
           <div>
-            <img src="../assets/img/phone.png" alt="">
+            <img src="../assets/img/phone.png" alt="" />
           </div>
           <div>
             <p>+375 (17) 212-03-59</p>
@@ -33,29 +33,29 @@
         </div>
         <div class="header-contacts__email">
           <div>
-            <img src="../assets/img/email.png" alt="info@etline.by">
+            <img src="../assets/img/email.png" alt="info@etline.by" />
           </div>
           <p>info@etline.by</p>
         </div>
       </div>
-      <div class="burger-menu" @click="sidebar=true">
-        <img src="../assets/img/open-menu.png" width="30">
+      <div class="burger-menu" @click="sidebar = true">
+        <img src="../assets/img/open-menu.png" width="30" />
       </div>
     </header>
     <div class="header-hero">
       <p class="slogan">Прямые поставки электротехнической продукции</p>
       <div class="search">
-        <input type="text" placeholder="Введите наименование (маркировку)">
-        <img src="../assets/img/search.png">
+        <input type="text" placeholder="Введите наименование (маркировку)" />
+        <img src="../assets/img/search.png" />
       </div>
     </div>
     <transition name="slide">
-      <ul class="side-navbar" v-if="sidebar" @click="sidebar=false">
+      <ul v-if="sidebar" class="side-navbar" @click="sidebar = false">
         <li><nuxt-link to="/">Главная</nuxt-link></li>
         <li
-          @mouseover="isHover=true"
-          @mouseleave="isHover=false"
           class="side-navbar__catalog"
+          @mouseover="isHover = true"
+          @mouseleave="isHover = false"
         >
           <nuxt-link to="/catalog">Каталог</nuxt-link>
           <div v-if="isHover" class="catalog-dropdown">
@@ -66,7 +66,13 @@
         <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
       </ul>
     </transition>
-    <img v-if="sidebar" @click="sidebar=false" class="close" src="../assets/img/close.png" width="20">
+    <img
+      v-if="sidebar"
+      class="close"
+      src="../assets/img/close.png"
+      width="20"
+      @click="sidebar = false"
+    />
   </div>
 </template>
 
@@ -95,10 +101,10 @@ export default {
   header {
     display: flex;
     align-items: flex-end;
-  
+
     & .logo {
       margin: 40px 0 0 30px;
-      
+
       @media screen and (max-width: 520px) {
         margin-left: 10px;
       }
@@ -139,7 +145,7 @@ export default {
     a {
       display: block;
       padding: 11px 5px;
-      text-decoration: none; 
+      text-decoration: none;
 
       &:hover {
         color: #000;
@@ -198,7 +204,7 @@ export default {
 }
 .burger-menu {
   display: none;
-  
+
   @media screen and (max-width: 876px) {
     display: block;
     margin-left: auto;
@@ -254,7 +260,7 @@ export default {
         color: #999;
       }
     }
-    
+
     img {
       position: absolute;
       top: 7px;
@@ -284,7 +290,7 @@ export default {
   @media screen and (max-width: 520px) {
     width: 265px;
     margin-left: 20px;
-  } 
+  }
 }
 .side-navbar {
   width: 70%;
@@ -304,13 +310,13 @@ export default {
     a {
       display: block;
       padding: 11px 5px;
-      text-decoration: none; 
+      text-decoration: none;
     }
   }
 }
 .slide-enter-active,
 .slide-leave-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-enter,
 .slide-leave-to {
