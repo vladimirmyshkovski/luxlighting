@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="vacancy-card__image">
-      <img :src="require(`@/assets/img/${img}`)" />
+      <img :src="img" />
     </div>
   </div>
 </template>
