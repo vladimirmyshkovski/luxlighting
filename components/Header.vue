@@ -7,16 +7,7 @@
       <nav class="nav">
         <ul class="navbar">
           <li><nuxt-link to="/">Главная</nuxt-link></li>
-          <li
-            class="navbar__catalog"
-            @mouseover="isHover = true"
-            @mouseleave="isHover = false"
-          >
-            <nuxt-link to="/catalog">Каталог</nuxt-link>
-            <div v-if="isHover" class="catalog-dropdown">
-              <CatalogDropdown />
-            </div>
-          </li>
+          <li><nuxt-link to="/catalog">Каталог</nuxt-link></li>
           <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
           <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
         </ul>
@@ -52,16 +43,7 @@
     <transition name="slide">
       <ul v-if="sidebar" class="side-navbar" @click="sidebar = false">
         <li><nuxt-link to="/">Главная</nuxt-link></li>
-        <li
-          class="side-navbar__catalog"
-          @mouseover="isHover = true"
-          @mouseleave="isHover = false"
-        >
-          <nuxt-link to="/catalog">Каталог</nuxt-link>
-          <div v-if="isHover" class="catalog-dropdown">
-            <CatalogDropdown />
-          </div>
-        </li>
+        <li><nuxt-link to="/catalog">Каталог</nuxt-link></li>
         <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
         <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
       </ul>
@@ -77,13 +59,10 @@
 </template>
 
 <script>
-import CatalogDropdown from '@/components/CatalogDropdown.vue'
 export default {
-  components: { CatalogDropdown },
   data() {
     return {
-      sidebar: false,
-      isHover: false
+      sidebar: false
     }
   }
 }
@@ -151,15 +130,6 @@ export default {
         color: #000;
         background-color: #f7c601;
       }
-    }
-  }
-  &__catalog {
-    position: relative;
-
-    .catalog-dropdown {
-      position: absolute;
-      top: 35px;
-      left: 0;
     }
   }
 }

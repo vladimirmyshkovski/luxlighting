@@ -1,18 +1,16 @@
 <template>
   <div>
     <div class="category">
-      <div class="subcategory">
-        <p class="subcategory__title">Лампы газоразрядные ДНАТ</p>
-        <div class="catalog-wrapper">
-          <CatalogItem
-            v-for="product in products"
-            :key="product.id"
-            :title="product.title"
-            :image="require(`@/assets/img/${product.image}`)"
-            :features="product.features"
-            :price="product.price"
-            @click.native="$router.push({ path: `/products/${product.id}` })"
-          />
+      <div
+        v-for="category in categories"
+        :key="category.id"
+        class="category__item"
+      >
+        <div class="item__img">
+          <img :src="require(`@/assets/img/products/${category.img}`)" />
+        </div>
+        <div class="item__title">
+          <p>{{ category.cat || category.name }}</p>
         </div>
       </div>
     </div>
@@ -20,83 +18,56 @@
 </template>
 
 <script>
-import CatalogItem from '@/components/CatalogItem.vue'
 export default {
-  components: { CatalogItem },
-  data() {
-    return {
-      subcats: ['Лампы газоразрядные ДНАТ', 'Лампы газоразрядные ДРИ'],
-      products: [
-        {
-          id: 1,
-          title: 'Лампа газоразрядная ДНАТ 70ВТ',
-          image: 'lamp.png',
-          features: {
-            power: '9 Вт',
-            voltage: '185-265',
-            frequency: '50',
-            cap: 'G13',
-            colorTemperature: '4000/6500',
-            sizes: '600x26',
-            colorRenderIndex: '>80',
-            lightFlow: '800',
-            quantity: '30'
-          },
-          price: '2.63'
-        },
-        {
-          id: 2,
-          title: 'Лампа газоразрядная ДНАТ 70ВТ',
-          image: 'lamp.png',
-          features: {
-            power: '9 Вт',
-            voltage: '185-265',
-            frequency: '50',
-            cap: 'G13',
-            colorTemperature: '4000/6500',
-            sizes: '600x26',
-            colorRenderIndex: '>80',
-            lightFlow: '800',
-            quantity: '30'
-          },
-          price: '2.63'
-        },
-        {
-          id: 3,
-          title: 'Лампа газоразрядная ДНАТ 70ВТ',
-          image: 'lamp.png',
-          features: {
-            power: '9 Вт',
-            voltage: '185-265',
-            frequency: '50',
-            cap: 'G13',
-            colorTemperature: '4000/6500',
-            sizes: '600x26',
-            colorRenderIndex: '>80',
-            lightFlow: '800',
-            quantity: '30'
-          },
-          price: '2.63'
-        }
-      ]
+  props: {
+    categories: {
+      type: Array,
+      default: () => []
     }
   }
 }
 </script>
 
 <style lang="scss">
-.subcategory__title {
-  margin-top: 20px;
-  text-transform: uppercase;
-
-  @media screen and (max-width: 876px) {
-    padding-left: 20px;
-  }
-}
-.catalog-wrapper {
-  margin-top: 40px;
+.category {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  justify-content: center;
+
+  &__item {
+    margin-top: 50px;
+    width: 190px;
+    text-align: center;
+    cursor: pointer;
+
+    .item__img {
+      margin: auto;
+      margin-bottom: 15px;
+      width: 190px;
+      height: 190px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border: 2px solid #f7c601;
+      position: relative;
+
+      &:before {
+        content: '';
+        min-width: 198px;
+        height: 198px;
+        display: block;
+        border: 2px solid #f7c601;
+        position: absolute;
+        top: -6px;
+        left: -6px;
+      }
+    }
+    .item__title {
+      text-align: center;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
 }
 </style>
