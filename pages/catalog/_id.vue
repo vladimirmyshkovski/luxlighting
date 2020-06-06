@@ -36,6 +36,9 @@ export default {
       }
     }
     */
+  },
+  head() {
+    return { title: this.product.title }
   }
 }
 </script>
