@@ -1,30 +1,36 @@
 <template>
   <div>
-    <p class="page-title">
+    <!--p class="page-title">
       Мы работаем только с юридическими лицами и индивидуальными
       предпринимателями и только по безналичному расчету.
+    </p-->
+    <p class="page-title">
+      {{ page.content.title }}
     </p>
     <div class="contacts bordered">
       <div class="contacts__addresses">
         <div class="address">
           <p class="address__title">Адрес юридический:</p>
-          <p>
+          <!--p>
             220073 РБ, г.Минск, ул. Бирюзова, д.4, корп.9, пом.7, каб.19.
-          </p>
+          </p-->
+          <p>{{ page.content.legal_address }}</p>
           <p class="address__title">Адрес склада:</p>
-          <p>
+          <p>{{ page.content.warehouse_address }}</p>
+          <!--p>
             Минская обл., Минский р-н, Щомыслицкий с/с, 76, район д.Богатырево
             (территория базы ОАО «Озтранс» - Минский р-н, п/о Озерцо,
             Меньковский тракт, 21).
-          </p>
+          </p-->
           <p class="address__title inline">Адрес почтовый:</p>
-          <p>220115 г.Минск, а/я 138.</p>
-
+          <!--p>220115 г.Минск, а/я 138.</p-->
+          <p>{{ page.content.post_address }}</p>
           <p class="address__title address__req">Реквизиты</p>
-          <p>
+          <!--p>
             р/с BY34 PJCB 3012 0544 9710 0000 0933 в ОАО «Приорбанк» код
             PJCBBY2X 220108 г.Минск, ул. Казинца 92/1 УНП 192982935.
-          </p>
+          </p-->
+          <p>{{ page.content.requisites }}</p>
         </div>
         <div class="download">
           <div class="download__req">
@@ -43,10 +49,11 @@
           </div>
         </div>
         <div class="law">
-          <p>
+          <p>{{ page.content.law }}</p>
+          <!--p>
             Свидетельство о государственной регистрации юридического лица: №
             192982935 от 13 октября 2017 г. выданный Мингорисполкомом.
-          </p>
+          </p-->
         </div>
       </div>
       <div class="contacts__info">
@@ -57,13 +64,24 @@
             </div>
             <div>
               <p class="connection__title">Тел.гор.:</p>
-              <p>+375 (17) 510-28-95;</p>
-              <p>+375 (17) 507-51-02.</p>
+              <!--p>{{ page.content.city_phone }}</p-->
+              <!--p>+375 (17) 510-28-95;</p>
+              <p>+375 (17) 507-51-02.</p-->
+              <vue-markdown-it
+                class="connection__title"
+                v-if="page.content.city_phone"
+                :source="page.content.city_phone"
+              />
               <div class="connection__title">Тел.моб.:</div>
-              <p>+375 (29) 661-33-96;</p>
-              <p>+375 (29) 329-16-89.</p>
+              <!--p>{{ page.content.mobile_phone }}</p-->
+              <vue-markdown-it
+                v-if="page.content.mobile_phone"
+                :source="page.content.mobile_phone"
+              />
+              <!--p>+375 (29) 661-33-96;</p>
+              <p>+375 (29) 329-16-89.</p-->
               <div class="connection__title">E-mail:</div>
-              <p>luxlighting@inbox.ru</p>
+              <p>{{ page.content.email }}</p>
             </div>
           </div>
           <div class="business__workhours">
@@ -72,9 +90,14 @@
             </div>
             <div>
               <p class="connection__title">Режим работы:</p>
-              <p>Пн-Пт:</p>
+              <!--p>Пн-Пт:</p>
               <p>с 09-00 до 17-00</p>
-              <p>Сб, Вс: Выходной</p>
+              <p>Сб, Вс: Выходной</p-->
+              <!--p>{{ page.content.schedule }}</p-->
+              <vue-markdown-it
+                v-if="page.content.schedule"
+                :source="page.content.schedule"
+              />
             </div>
           </div>
         </div>
@@ -92,15 +115,14 @@
               :coords="marker.coords"
               :hint-content="marker.hint"
               marker-type="placemark"
-            ></ymap-marker>
-            <!-- <ymap-marker marker-id="2" marker-type="placemark" :coord="coords"></ymap-marker> -->
+            />
           </yandex-map>
         </div>
       </div>
     </div>
     <div class="attention bordered block">
       <p class="attention__title">ВНИМАНИЕ!</p>
-      <p class="attention__text">
+      <!--p class="attention__text">
         Выписка документов и отпуск продукции производится по адресу: Минская
         обл., Минский р-н, Щомыслицкий сельсовет, район д. Озерцо,
         производственно-административное здание № 600/С-94119, офис 2
@@ -113,14 +135,34 @@
         доверенность на получение товара (с указанием должности) или копию
         приказа о назначении директора (в случае, если товар получает директор),
         документ удостоверяющий личность.
-      </p>
+      </p-->
+      <!--p class="attention__text">
+        {{ page.content.attention }}
+      </p-->
+      <vue-markdown-it
+        class="attention__text"
+        v-if="page.content.attention"
+        :source="page.content.attention"
+      />
     </div>
   </div>
 </template>
 
 <script>
-// import { yandexMap, ymapMarker } from 'vue-yandex-maps'
+import VueMarkdownIt from 'vue-markdown-it'
 export default {
+  components: { VueMarkdownIt },
+  async asyncData({ $axios }) {
+    const response = await $axios.get(`pages?path=contacts`)
+    const page = response.data[0]
+    const content = page.content[0]
+    if (content.__component === 'contacts.contacts') {
+      page.content = content
+      return {
+        page
+      }
+    }
+  },
   data() {
     return {
       zoom: 17,

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news",
+  "info": {
+    "name": "New"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

@@ -1,12 +1,5 @@
 <template>
-  <div>
-    <Product
-      :title="product.title"
-      :image="require(`@/assets/img/${product.image}`)"
-      :features="product.features"
-      :price="product.price"
-    />
-  </div>
+  <product :product="product" />
 </template>
 
 <script>
@@ -18,6 +11,7 @@ export default {
   },
   async asyncData({ $axios, params }) {
     const response = await $axios.get(`products/${params.id}`)
+    console.log('response', response)
     return {
       product: response.data
     }
@@ -42,6 +36,9 @@ export default {
       }
     }
     */
+  },
+  head() {
+    return { title: this.product.title }
   }
 }
 </script>

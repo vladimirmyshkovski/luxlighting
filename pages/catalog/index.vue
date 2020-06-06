@@ -1,7 +1,7 @@
 <template>
   <div class="catalog">
     <p class="catalog__category">{{ category }}</p>
-    <Catalog />
+    <catalog :products="products" />
   </div>
 </template>
 
@@ -9,13 +9,17 @@
 import Catalog from '@/components/Catalog.vue'
 export default {
   components: { Catalog },
-  data() {
+  async asyncData({ $axios }) {
+    const response = await $axios.get('products')
     return {
-      category: ''
+      category: '',
+      products: response.data
     }
   },
   mounted() {
-    this.category = localStorage.getItem('category')
+    this.$nextTick(() => {
+      this.category = localStorage.getItem('category')
+    })
   }
 }
 </script>

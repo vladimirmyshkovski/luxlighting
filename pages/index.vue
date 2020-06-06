@@ -3,37 +3,20 @@
     <main>
       <div class="company">
         <div class="company__about">
-          <div class="about__title">
-            Компания <span>ООО «ЛЮКСЛАЙТИНГ»</span> - единственный поставщик
-            светотехнических решений
-          </div>
-          <p>
-            «люкслайтинг» - активно развивающаяся компания, которая занимается
-            реализацией комплексных электротехнических проектов, поставкой и
-            продажей светотехники и электрооборудования в минске от ведущих
-            производителей. этот сайт электротехники и светотехники поможет вам
-            сделать выбор нужного товара из многообразия электротехнической
-            продукции.
-          </p>
-          <p>
-            основные партнеры «люкслайтинг» - группа компаний «перспектива
-            групп» г. санкт-петербург и тм jazzway, предприятие issata limited,
-            один из ведущих производителей электротехнической продукции на
-            территории кнр, чптуп «витебское электротехническое предприятие
-            «свет» - отечественный производитель и импортер светотехнической
-            продукции и многие другие.
-          </p>
-          <p>
-            мы предоставляем вам отличную вохможность выгодно купить
-            электротехнику в минске! будучи официальными дилерами и партнерами
-            предприятий-изготовителей электротехники и электрооборудования, мы
-            открыты к взаимовыгодному сотрудничеству
-          </p>
+          <div>{{ page.content.about }}</div>
         </div>
+        <vue-markdown-it
+          v-if="page.content.text"
+          class="company__content"
+          :source="page.content.text"
+        />
         <div class="certificates">
-          <div><img src="../assets/img/c1.png" /></div>
-          <div><img src="../assets/img/c2.png" /></div>
-          <div><img src="../assets/img/c3.png" /></div>
+          <div
+            v-for="certificate in page.content.certificates"
+            :key="certificate.id"
+          >
+            <img :src="baseURL + certificate.url" />
+          </div>
         </div>
       </div>
       <div class="info">
@@ -41,22 +24,22 @@
         <div class="to-dealers">
           <div class="to-dealers__title">ДИЛЕРАМ</div>
           <div class="to-dealers__divider"></div>
-          <p>
-            светодиодные лампы серии Т8 с цоколем Г13 давно пользуются
-            популярностью и широко применяются в различных сферах деятельности
-            человека: бытовые и подсобные...
-          </p>
+          <vue-markdown-it
+            v-if="page.content.dealers"
+            :source="page.content.dealers"
+          />
         </div>
       </div>
     </main>
     <section>
-      <div class="we-are-cool">
-        <p>
-          мы ведем прямые поставки товара <br />
-          с заводов <br />
-          китая без посредников
-        </p>
-      </div>
+      <!--div class="we-are-cool">
+        {{ page.content.cta }}
+      </div-->
+      <vue-markdown-it
+        class="we-are-cool"
+        v-if="page.content.cta"
+        :source="page.content.cta"
+      />
       <div class="map">
         <img src="../assets/img/map.png" />
       </div>
@@ -66,16 +49,38 @@
     </section>
   </div>
 </template>
-
 <script>
+import VueMarkdownIt from 'vue-markdown-it'
 import News from '@/components/News.vue'
 export default {
   components: {
+    VueMarkdownIt,
     News
+  },
+  async asyncData({ $axios }) {
+    const response = await $axios.get(`pages?path=index`)
+    const page = response.data[0]
+    const content = page.content[0]
+    if (content.__component === 'main.main2') {
+      page.content = content
+      return {
+        page
+      }
+    }
+  },
+  computed: {
+    baseURL() {
+      return process.env.BASE_URL
+    }
+  },
+  head() {
+    return {
+      title: this.page.title,
+      description: this.page.description
+    }
   }
 }
 </script>
-
 <style lang="scss" scoped>
 main {
   margin-top: 45px;
@@ -114,6 +119,21 @@ main {
         font-size: 12px;
       }
     }
+
+    &__content {
+      font-family: 'MyRiad Pro Bold';
+
+      p {
+        font-size: 12px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+
+      span {
+        font-family: 'MyRiad Pro Semibold';
+      }
+    }
+
     .certificates {
       display: flex;
       justify-content: space-between;

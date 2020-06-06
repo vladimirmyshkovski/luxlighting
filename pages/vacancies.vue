@@ -1,14 +1,14 @@
 <template>
   <div>
     <p class="page-title">
-      Работа у нас - отличный способ реализовать свои возможности!
+      {{ page.content.title }}
     </p>
     <div class="vacancy-card-container">
       <VacancyCard
-        position="Менеджера"
-        subposition="по оптовым продажам электротехнической продукции"
-        :skills="skills"
-        img="manager.jpg"
+        :position="page.content.position"
+        :subposition="page.content.subposition"
+        :skills="page.content.skills.skills"
+        :img="baseURL + page.content.image.url"
       />
     </div>
   </div>
@@ -20,6 +20,17 @@ export default {
   components: {
     VacancyCard
   },
+  async asyncData({ $axios }) {
+    const response = await $axios.get(`pages?path=vacancies`)
+    const page = response.data[0]
+    const content = page.content[0]
+    if (content.__component === 'vacancie.vacancie') {
+      page.content = content
+      return {
+        page
+      }
+    }
+  },
   data() {
     return {
       skills: [
@@ -28,6 +39,17 @@ export default {
         'приветствуется наличие клиентской базы',
         'знание рынка электротехнической продукции'
       ]
+    }
+  },
+  computed: {
+    baseURL() {
+      return process.env.BASE_URL
+    },
+    head() {
+      return {
+        title: this.page.title,
+        description: this.page.description
+      }
     }
   }
 }

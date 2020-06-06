@@ -1,49 +1,51 @@
 <template>
   <div class="product">
-    <div class="product__image"><img :src="image" alt="title" /></div>
-    <div class="product__title">
-      <p>{{ title }}</p>
+    <div class="product__image">
+      <img :src="baseImageUrl + product.image.url" :alt="product.title" />
     </div>
-    <ul class="product__features">
+    <div class="product__title">
+      <p>{{ product.title }}</p>
+    </div>
+    <ul class="product__product">
       <li class="feature">
         <span class="feature__prop">Потребляемая мощность, Вт</span>
-        <span class="feature__value">{{ features.power }}</span>
+        <span class="feature__value">{{ product.power }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Напряжение питания, В</span>
-        <span class="feature__value">{{ features.voltage }}</span>
+        <span class="feature__value">{{ product.voltage }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Частота, Гц</span>
-        <span class="feature__value">{{ features.frequency }}</span>
+        <span class="feature__value">{{ product.frequency }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Цоколь</span>
-        <span class="feature__value">{{ features.cap }}</span>
+        <span class="feature__value">{{ product.cap }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Цветовая температура, K</span>
-        <span class="feature__value">{{ features.colorTemperature }}</span>
+        <span class="feature__value">{{ product.colorTemperature }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Кабаритные размеры, мм</span>
-        <span class="feature__value">{{ features.sizes }}</span>
+        <span class="feature__value">{{ product.sizes }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Индекс цветопередачи, Ra</span>
-        <span class="feature__value">{{ features.colorRenderIndex }}</span>
+        <span class="feature__value">{{ product.colorRenderIndex }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Световой поток, Лм</span>
-        <span class="feature__value">{{ features.lightFlow }}</span>
+        <span class="feature__value">{{ product.lightFlow }}</span>
       </li>
       <li class="feature">
         <span class="feature__prop">Количество в упаковке, шт</span>
-        <span class="feature__value">{{ features.quantity }}</span>
+        <span class="feature__value">{{ product.quantity }}</span>
       </li>
       <li class="price">
         <span class="price__prop">Цена, без учета НДС</span>
-        <span class="price__value">{{ price }} руб</span>
+        <span class="price__value">{{ product.price }} руб</span>
       </li>
     </ul>
   </div>
@@ -52,21 +54,14 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    image: {
-      type: String,
-      default: ''
-    },
-    features: {
-      type: [Array, Object],
+    product: {
+      type: Object,
       default: () => {}
-    },
-    price: {
-      type: [String, Number],
-      default: 0
+    }
+  },
+  computed: {
+    baseImageUrl() {
+      return process.env.BASE_URL
     }
   }
 }
@@ -94,7 +89,7 @@ export default {
     background-color: #fff;
     border: 3px solid #f7c601;
   }
-  &__features {
+  &__product {
     list-style-type: none;
     margin-top: 40px;
     padding: 0;

@@ -34,6 +34,6 @@ export default {
     '@nuxtjs/component-cache'
   ],
   axios: {
-    baseURL: process.env.AXIOS_BASE_URL || 'http://localhost:8000'
+    baseURL: process.env.BASE_URL || 'http://localhost:1337'
   }
 }
