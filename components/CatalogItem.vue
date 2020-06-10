@@ -73,33 +73,33 @@ export default {
   margin-top: 40px;
   margin-bottom: 60px;
   display: flex;
+}
+&__image {
+  width: 260px;
+  height: 260px;
+  margin-right: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 3px solid #f7c601;
+}
 
-  &__image {
-    width: 260px;
-    height: 260px;
-    margin-right: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    border: 3px solid #f7c601;
-  }
+&__title {
+  margin-top: 4px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 24px;
+  border-bottom: 1px solid #fff;
+}
 
-  &__title {
-    margin-top: 4px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    text-transform: uppercase;
-    font-size: 24px;
-    border-bottom: 1px solid #fff;
-  }
+.features {
+  font-size: 14px;
+  font-family: 'MyRiad Pro Semibold';
+  text-transform: uppercase;
+}
 
-  .features {
-    font-size: 14px;
-    font-family: 'MyRiad Pro Semibold';
-    text-transform: uppercase;
-  }
-
-  &__features {
+&__features {
   &__product {
     list-style-type: none;
     margin-top: 20px;
