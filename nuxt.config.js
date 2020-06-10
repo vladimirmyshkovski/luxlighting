@@ -30,10 +30,9 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-
     '@nuxtjs/component-cache'
   ],
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:1337'
+    baseURL: process.env.BASE_URL || 'https://lux-light.herokuapp.com'
   }
 }
