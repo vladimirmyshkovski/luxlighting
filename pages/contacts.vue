@@ -68,8 +68,8 @@
               <!--p>+375 (17) 510-28-95;</p>
               <p>+375 (17) 507-51-02.</p-->
               <vue-markdown-it
-                class="connection__title"
                 v-if="page.content.city_phone"
+                class="connection__title"
                 :source="page.content.city_phone"
               />
               <div class="connection__title">Тел.моб.:</div>
@@ -140,8 +140,8 @@
         {{ page.content.attention }}
       </p-->
       <vue-markdown-it
-        class="attention__text"
         v-if="page.content.attention"
+        class="attention__text"
         :source="page.content.attention"
       />
     </div>
