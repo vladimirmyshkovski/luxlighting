@@ -1,55 +1,29 @@
 <template>
   <div class="catalog">
-    <CatalogDropdown
-      @chooseCategory="chooseCategory"
-      @chooseProduct="chooseProduct"
-    />
-    <div class="catalog-wrapper">
-      <div class="breadcrumbs">
-        <span class="breadcrumbs__absolute-path">
-          <span @click="$router.push({ path: '/' })">Главная</span> /
-          <span @click="$router.go(-1)">Каталог</span>
-          <span v-if="category !== ''">/</span>
-        </span>
-        <span class="breadcrumbs__relative-path"> {{ category }} </span>
-      </div>
-      <Catalog v-if="!showProduct" :categories="categories" />
-      <CatalogItem
-        v-if="showProduct"
-        :title="product.title"
-        :image="require(`@/assets/img/products/${product.image}`)"
-        :features="product.features"
-        :price="product.price"
-      />
-    </div>
+    <p class="catalog__category">{{ category }}</p>
+    <catalog :products="products" />
   </div>
 </template>
 
 <script>
+import categories from '../categories.json'
+import products from '../products.json'
 import Catalog from '@/components/Catalog.vue'
 import CatalogItem from '@/components/CatalogItem.vue'
 import CatalogDropdown from '@/components/CatalogDropdown.vue'
 export default {
-  components: { Catalog, CatalogItem, CatalogDropdown },
-  data() {
+  components: { Catalog },
+  async asyncData({ $axios }) {
+    const response = await $axios.get('products')
     return {
-      products: [],
-      product: 'null',
-      categories: [],
       category: '',
-      showProduct: false
+      products: response.data
     }
   },
-  methods: {
-    chooseCategory(id) {
-      const cats = this.categories.find((cat) => cat.id === id)
-      this.categories = cats.subcats
-      this.category = this.categories[0].name
-    },
-    chooseProduct(item) {
-      this.showProduct = true
-      this.product = this.products.find((product) => item === product.category)
-    }
+  mounted() {
+    this.$nextTick(() => {
+      this.category = localStorage.getItem('category')
+    })
   }
 }
 </script>
