@@ -15,7 +15,7 @@
             v-for="certificate in page.content.certificates"
             :key="certificate.id"
           >
-            <img :src="baseURL + certificate.url" />
+            <img :src="certificate.url" />
           </div>
         </div>
       </div>
@@ -66,11 +66,6 @@ export default {
       return {
         page
       }
-    }
-  },
-  computed: {
-    baseURL() {
-      return process.env.BASE_URL
     }
   },
   head() {

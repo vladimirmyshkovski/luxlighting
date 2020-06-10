@@ -8,7 +8,7 @@
         :position="page.content.position"
         :subposition="page.content.subposition"
         :skills="page.content.skills.skills"
-        :img="baseURL + page.content.image.url"
+        :img="page.content.image.url"
       />
     </div>
   </div>
@@ -42,9 +42,6 @@ export default {
     }
   },
   computed: {
-    baseURL() {
-      return process.env.BASE_URL
-    },
     head() {
       return {
         title: this.page.title,
