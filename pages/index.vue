@@ -36,8 +36,8 @@
         {{ page.content.cta }}
       </div-->
       <vue-markdown-it
-        class="we-are-cool"
         v-if="page.content.cta"
+        class="we-are-cool"
         :source="page.content.cta"
       />
       <div class="map">
