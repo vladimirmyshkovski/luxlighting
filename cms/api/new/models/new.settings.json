@@ -11,10 +11,12 @@
   "attributes": {
     "text": {
       "type": "text",
-      "required": true
+      "required": true,
+      "description": "Текст"
     },
     "date": {
-      "type": "date"
+      "type": "date",
+      "description": "Дата"
     }
   }
 }
