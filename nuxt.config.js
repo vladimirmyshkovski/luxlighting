@@ -1,5 +1,5 @@
 export default {
-  mode: 'universe',
+  mode: 'universal',
   head: {
     title: 'Lux Lighting',
     meta: [
