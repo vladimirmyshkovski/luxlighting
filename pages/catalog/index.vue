@@ -6,11 +6,7 @@
 </template>
 
 <script>
-import categories from '../categories.json'
-import products from '../products.json'
 import Catalog from '@/components/Catalog.vue'
-import CatalogItem from '@/components/CatalogItem.vue'
-import CatalogDropdown from '@/components/CatalogDropdown.vue'
 export default {
   components: { Catalog },
   async asyncData({ $axios }) {
