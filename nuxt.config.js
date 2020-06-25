@@ -2,6 +2,7 @@ export default {
   mode: 'universal',
   head: {
     title: 'Lux Lighting',
+    description: 'Lux Lighting',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
