@@ -7,15 +7,14 @@
           {{ cat.cat }}
         </label>
         <div class="tab__content">
-          <div v-for="(subcat, idx) in cat.subcats" :key="idx">
+          <div
+            v-for="(subcat, idx) in cat.subcats"
+            :key="idx"
+            @click="$emit('chooseCat', cat.id)"
+          >
             <p>
               {{ subcat.name }}
             </p>
-            <!-- <ul v-if="details" class="details">
-              <li v-for="(detail, i) in subcat.details" :key="i">
-                - Длина: {{ detail }} мм
-              </li>
-            </ul> -->
           </div>
         </div>
       </div>
@@ -28,15 +27,7 @@ import categories from '../categories.json'
 export default {
   data() {
     return {
-      categories,
-      catIndex: null,
-      showCategories: false,
-      details: false
-    }
-  },
-  methods: {
-    showDetails(item, index) {
-      //
+      categories
     }
   }
 }

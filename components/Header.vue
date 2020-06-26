@@ -8,7 +8,7 @@
         <ul class="navbar">
           <li><nuxt-link to="/">Главная</nuxt-link></li>
           <li class="navbar__dropdown" @mouseover="dropdown = true">
-            <CatalogDropdown v-if="dropdown" />
+            <CatalogDropdown v-if="dropdown" @chooseCat="chooseCat" />
             <nuxt-link to="/catalog">Каталог</nuxt-link>
           </li>
           <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
@@ -69,6 +69,12 @@ export default {
     return {
       dropdown: false,
       sidebar: false
+    }
+  },
+  methods: {
+    chooseCat(id) {
+      this.dropdown = false
+      this.$router.push({ path: '/catalog', params: { id } })
     }
   }
 }
