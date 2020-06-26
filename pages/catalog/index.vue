@@ -1,16 +1,21 @@
 <template>
   <div class="catalog">
-    <p class="catalog__category">{{ category }}</p>
-    <catalog :products="products" />
+    <CatalogNavbar />
+    <div class="catalog-wrapper">
+      <p class="catalog__category">{{ category }}</p>
+      <catalog :products="products" />
+    </div>
   </div>
 </template>
 
 <script>
 import Catalog from '@/components/Catalog.vue'
+import CatalogNavbar from '@/components/CatalogNavbar.vue'
 export default {
-  components: { Catalog },
+  components: { Catalog, CatalogNavbar },
   async asyncData({ $axios }) {
     const response = await $axios.get('products')
+    console.log(response)
     return {
       category: '',
       products: response.data

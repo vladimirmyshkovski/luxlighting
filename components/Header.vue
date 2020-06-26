@@ -7,7 +7,10 @@
       <nav class="nav">
         <ul class="navbar">
           <li><nuxt-link to="/">Главная</nuxt-link></li>
-          <li><nuxt-link to="/catalog">Каталог</nuxt-link></li>
+          <li class="navbar__dropdown" @mouseover="dropdown = true">
+            <CatalogDropdown v-if="dropdown" />
+            <nuxt-link to="/catalog">Каталог</nuxt-link>
+          </li>
           <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
           <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
         </ul>
@@ -59,9 +62,12 @@
 </template>
 
 <script>
+import CatalogDropdown from '../components/CatalogDropdown'
 export default {
+  components: { CatalogDropdown },
   data() {
     return {
+      dropdown: false,
       sidebar: false
     }
   }
@@ -131,6 +137,9 @@ export default {
         background-color: #f7c601;
       }
     }
+  }
+  &__dropdown {
+    position: relative;
   }
 }
 .header-contacts,
