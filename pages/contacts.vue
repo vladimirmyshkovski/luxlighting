@@ -30,7 +30,12 @@
             р/с BY34 PJCB 3012 0544 9710 0000 0933 в ОАО «Приорбанк» код
             PJCBBY2X 220108 г.Минск, ул. Казинца 92/1 УНП 192982935.
           </p-->
-          <p>{{ page.content.requisites }}</p>
+          <!--div>{{ page.content.requisites }}</div-->
+          <vue-markdown-it
+            v-if="page.content.requisites"
+            class="address__req"
+            :source="page.content.requisites"
+          />
         </div>
         <div class="download">
           <div class="download__req">
@@ -171,10 +176,6 @@ export default {
         {
           coords: [53.844578, 27.413984],
           hint: 'Меньковский тракт, 21'
-        },
-        {
-          coords: [53.844266, 27.413775],
-          hint: 'OAO "Озтранс"'
         }
       ]
     }
@@ -219,6 +220,11 @@ export default {
       }
       &__req {
         margin-top: 25px;
+
+        p {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
       }
     }
     .download {
