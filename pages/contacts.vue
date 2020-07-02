@@ -5,7 +5,7 @@
       предпринимателями и только по безналичному расчету.
     </p-->
     <p class="page-title">
-      {{ page.content.title }}
+      {{ page.title }}
     </p>
     <div class="contacts bordered">
       <div class="contacts__addresses">
@@ -14,9 +14,9 @@
           <!--p>
             220073 РБ, г.Минск, ул. Бирюзова, д.4, корп.9, пом.7, каб.19.
           </p-->
-          <p>{{ page.content.legal_address }}</p>
+          <p>{{ page.legal_address }}</p>
           <p class="address__title">Адрес склада:</p>
-          <p>{{ page.content.warehouse_address }}</p>
+          <p>{{ page.warehouse_address }}</p>
           <!--p>
             Минская обл., Минский р-н, Щомыслицкий с/с, 76, район д.Богатырево
             (территория базы ОАО «Озтранс» - Минский р-н, п/о Озерцо,
@@ -24,7 +24,7 @@
           </p-->
           <p class="address__title inline">Адрес почтовый:</p>
           <!--p>220115 г.Минск, а/я 138.</p-->
-          <p>{{ page.content.post_address }}</p>
+          <p>{{ page.post_address }}</p>
           <p class="address__title address__req">Реквизиты</p>
           <!--p>
             р/с BY34 PJCB 3012 0544 9710 0000 0933 в ОАО «Приорбанк» код
@@ -32,20 +32,26 @@
           </p-->
           <!--div>{{ page.content.requisites }}</div-->
           <vue-markdown-it
-            v-if="page.content.requisites"
+            v-if="page.requisites"
             class="address__req"
-            :source="page.content.requisites"
+            :source="page.requisites"
           />
         </div>
         <div class="download">
-          <div class="download__req">
+          <div
+            class="download__req"
+            @click="download(page.requisites_file.url)"
+          >
             <img src="../assets/img/requisites.png" alt="скачать реквизиты" />
             <p>
               Скачать <br />
               реквизиты
             </p>
           </div>
-          <div class="download__route">
+          <div
+            class="download__route"
+            @click="download(page.driving_directions_file.url)"
+          >
             <img src="../assets/img/route.png" alt="скачать схему проезда" />
             <p>
               Скачать <br />
@@ -54,7 +60,7 @@
           </div>
         </div>
         <div class="law">
-          <p>{{ page.content.law }}</p>
+          <p>{{ page.law }}</p>
           <!--p>
             Свидетельство о государственной регистрации юридического лица: №
             192982935 от 13 октября 2017 г. выданный Мингорисполкомом.
@@ -73,20 +79,20 @@
               <!--p>+375 (17) 510-28-95;</p>
               <p>+375 (17) 507-51-02.</p-->
               <vue-markdown-it
-                v-if="page.content.city_phone"
+                v-if="page.city_phone"
                 class="connection__title"
-                :source="page.content.city_phone"
+                :source="page.city_phone"
               />
               <div class="connection__title">Тел.моб.:</div>
               <!--p>{{ page.content.mobile_phone }}</p-->
               <vue-markdown-it
-                v-if="page.content.mobile_phone"
-                :source="page.content.mobile_phone"
+                v-if="page.mobile_phone"
+                :source="page.mobile_phone"
               />
               <!--p>+375 (29) 661-33-96;</p>
               <p>+375 (29) 329-16-89.</p-->
               <div class="connection__title">E-mail:</div>
-              <p>{{ page.content.email }}</p>
+              <p>{{ page.email }}</p>
             </div>
           </div>
           <div class="business__workhours">
@@ -99,10 +105,7 @@
               <p>с 09-00 до 17-00</p>
               <p>Сб, Вс: Выходной</p-->
               <!--p>{{ page.content.schedule }}</p-->
-              <vue-markdown-it
-                v-if="page.content.schedule"
-                :source="page.content.schedule"
-              />
+              <vue-markdown-it v-if="page.schedule" :source="page.schedule" />
             </div>
           </div>
         </div>
@@ -145,9 +148,9 @@
         {{ page.content.attention }}
       </p-->
       <vue-markdown-it
-        v-if="page.content.attention"
+        v-if="page.attention"
         class="attention__text"
-        :source="page.content.attention"
+        :source="page.attention"
       />
     </div>
   </div>
@@ -158,15 +161,9 @@ import VueMarkdownIt from 'vue-markdown-it'
 export default {
   components: { VueMarkdownIt },
   async asyncData({ $axios }) {
-    const response = await $axios.get(`pages?path=contacts`)
-    const page = response.data[0]
-    const content = page.content[0]
-    if (content.__component === 'contacts.contacts') {
-      page.content = content
-      return {
-        page
-      }
-    }
+    const response = await $axios.get(`contacts`)
+    const page = response.data
+    return { page }
   },
   data() {
     return {
@@ -178,6 +175,24 @@ export default {
           hint: 'Меньковский тракт, 21'
         }
       ]
+    }
+  },
+  methods: {
+    forceFileDownload(response) {
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', 'file.png') // or any other extension
+      document.body.appendChild(link)
+      link.click()
+    },
+    download(fileUrl) {
+      this.$axios
+        .get(fileUrl)
+        .then((response) => {
+          this.forceFileDownload(response)
+        })
+        .catch(() => console.log('error occured'))
     }
   }
 }

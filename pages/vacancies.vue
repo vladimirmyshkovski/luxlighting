@@ -1,14 +1,14 @@
 <template>
   <div>
     <p class="page-title">
-      {{ page.content.title }}
+      {{ page.title }}
     </p>
     <div class="vacancy-card-container">
       <VacancyCard
-        :position="page.content.position"
-        :subposition="page.content.subposition"
-        :skills="page.content.skills.skills"
-        :img="page.content.image.url"
+        :position="page.position"
+        :subposition="page.subposition"
+        :skills="page.skills.skills"
+        :img="page.image.url"
       />
     </div>
   </div>
@@ -21,15 +21,9 @@ export default {
     VacancyCard
   },
   async asyncData({ $axios }) {
-    const response = await $axios.get(`pages?path=vacancies`)
-    const page = response.data[0]
-    const content = page.content[0]
-    if (content.__component === 'vacancie.vacancie') {
-      page.content = content
-      return {
-        page
-      }
-    }
+    const response = await $axios.get(`vacancies`)
+    const page = response.data
+    return { page }
   },
   data() {
     return {
