@@ -7,10 +7,7 @@
       <nav class="nav">
         <ul class="navbar">
           <li><nuxt-link to="/">Главная</nuxt-link></li>
-          <li class="navbar__dropdown" @mouseover="dropdown = true">
-            <CatalogDropdown v-if="dropdown" @chooseCat="chooseCat" />
-            <nuxt-link to="/catalog">Каталог</nuxt-link>
-          </li>
+          <li><nuxt-link to="/catalog">Каталог</nuxt-link></li>
           <li><nuxt-link to="/vacancies">Вакансии</nuxt-link></li>
           <li><nuxt-link to="/contacts">Контакты</nuxt-link></li>
         </ul>
@@ -21,15 +18,15 @@
             <img src="../assets/img/phone.png" alt="" />
           </div>
           <div>
-            <p>+375 (17) 212-03-59</p>
-            <p>+375 (29) 661-33-96</p>
+            <p>{{ header.first_phone_number }}</p>
+            <p>{{ header.second_phone_number }}</p>
           </div>
         </div>
         <div class="header-contacts__email">
           <div>
-            <img src="../assets/img/email.png" alt="info@etline.by" />
+            <img src="../assets/img/email.png" :alt="header.email" />
           </div>
-          <p>info@etline.by</p>
+          <p>{{ header.email }}</p>
         </div>
       </div>
       <div class="burger-menu" @click="sidebar = true">
@@ -37,7 +34,7 @@
       </div>
     </header>
     <div class="header-hero">
-      <p class="slogan">Прямые поставки электротехнической продукции</p>
+      <p class="slogan">{{ header.slogan }}</p>
       <div class="search">
         <input type="text" placeholder="Введите наименование (маркировку)" />
         <img src="../assets/img/search.png" />
@@ -62,20 +59,21 @@
 </template>
 
 <script>
-import CatalogDropdown from '../components/CatalogDropdown'
 export default {
-  components: { CatalogDropdown },
-  data() {
-    return {
-      dropdown: false,
-      sidebar: false
+  data: () => ({
+    sidebar: false,
+    header: {
+      first_phone_number: '',
+      second_phone_number: '',
+      email: '',
+      slogan: ''
     }
-  },
-  methods: {
-    chooseCat(id) {
-      this.dropdown = false
-      this.$router.push({ path: '/catalog', params: { id } })
-    }
+  }),
+  async mounted() {
+    await this.$nextTick(async () => {
+      const response = await this.$axios.get('header')
+      this.header = response.data
+    })
   }
 }
 </script>
@@ -143,9 +141,6 @@ export default {
         background-color: #f7c601;
       }
     }
-  }
-  &__dropdown {
-    position: relative;
   }
 }
 .header-contacts,
