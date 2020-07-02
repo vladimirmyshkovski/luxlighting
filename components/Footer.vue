@@ -3,13 +3,13 @@
     <div class="requisites">
       <p class="copy">&copy;</p>
       <p>
-        2017-2020 ООО «Люкслайтинг» <br />
-        УНП 182982935 <br />
-        тел. +375 17 507-51-02 <br />
-        luxlighting@inbox.ru
+        {{ footer.title }} <br />
+        УНП {{ footer.tin }} <br />
+        тел. {{ footer.phone_number }} <br />
+        {{ foter.email }}
       </p>
     </div>
-    <div class="disclaimer">
+    <!--div class="disclaimer">
       <p>
         Сайт не является интернет-магазином. <br />
         Представленный на сайте товар реализуется только <br />
@@ -17,19 +17,50 @@
         Данный сайт носит информационный характер и не является <br />
         публичной офертой.
       </p>
-    </div>
+    </div-->
+    <vue-markdown-it
+      v-if="header.disclaimer"
+      class="disclaimer"
+      :source="header.disclaimer"
+    />
     <div class="social">
-      <a href="https://facebook.com"
-        ><img src="../assets/img/social/fb.png"
-      /></a>
-      <a href="https://twitter.com"><img src="../assets/img/social/tw.png"/></a>
-      <a href="https://google.com"><img src="../assets/img/social/g+.png"/></a>
+      <a v-if="header.facebook" :href="header.facebook">
+        <img src="../assets/img/social/fb.png" />
+      </a>
+      <a v-if="header.twitter" :href="header.twitter">
+        <img src="../assets/img/social/tw.png" />
+      </a>
+      <a v-if="header.google" :href="header.google">
+        <img src="../assets/img/social/g+.png" />
+      </a>
     </div>
   </footer>
 </template>
 
 <script>
-export default {}
+import VueMarkdownIt from 'vue-markdown-it'
+
+export default {
+  components: { VueMarkdownIt },
+  data: () => ({
+    footer: {
+      title: '',
+      tin: '',
+      phone_number: '',
+      email: '',
+      disclaimer: '',
+      facebook: '',
+      twitter: '',
+      google: ''
+    }
+  }),
+  async mounted() {
+    await this.$nextTick(async () => {
+      const response = await this.$axios.get('footer')
+      this.footer = response.data
+    })
+  }
+}
 </script>
 
 <style scoped lang="scss">
