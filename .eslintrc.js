@@ -19,8 +19,5 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    "prettier/prettier": ["error", {
-     "endOfLine":"auto"
-   }]
   }
 }
